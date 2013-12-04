@@ -1,4 +1,5 @@
-#!/bash/sh -e
+#!/bash/sh 
+set -e
 
 username=
 home=
@@ -7,6 +8,7 @@ completion_ignore_case=false
 ssh=false
 emacs=false
 aliases=false
+git=true
 general_tools=false
 
 usage() {
@@ -20,7 +22,7 @@ options="u:h"
 while getopts $options option
 do
     case $option in
-        u) username=$OPTARG; home="/home/$username/"; exit;;
+        u) username=$OPTARG; home="/home/$username/";;
         h) usage; exit;;
     esac
 done
@@ -30,7 +32,7 @@ done
 ##########################################
 
 if $completion_ignore_case; then
-    sudo echo "set completion-ignore-case On" >> /etc/inputrc
+    echo "set completion-ignore-case On" | sudo tee -a /etc/inputrc
     echo "Terminal case insensitive autocomplete done !!!"
 fi
 
@@ -46,9 +48,9 @@ if $ssh; then
         exit 1
     fi
     
-    sudo apt-get install -y openssh-server openssh-client
+    sudo apt-get install -q -y openssh-server openssh-client
     sudo cp ./banner /etc/ssh/banner
-    sudo echo "Banner /etc/ssh/banner" >> /etc/ssh/sshd_config
+    echo "Banner /etc/ssh/banner" | sudo tee -a /etc/ssh/sshd_config
     echo "SSH installation and config done !!!"
 fi    
 
@@ -64,7 +66,7 @@ if $emacs; then
         exit 1
     fi
     
-    sudo apt-get install -y emacs24 emacs24-el emacs24-common-non-dfsg
+    sudo apt-get install -q -y emacs24 emacs24-el emacs24-common-non-dfsg
     
     sudo cp ./emacs $home/.emacs
     sudo chown $username:$username $home/.emacs
@@ -73,6 +75,18 @@ if $emacs; then
     sudo ln -s $home/.emacs /root/.emacs
     
     echo "Emacs installation and configuration done !!!"
+fi
+
+#######
+# GIT #
+#######
+
+if $git; then
+
+    sudo apt-get install -q -y git
+    git config --global user.name "Swapnil S. Mahajan"
+    git config --global user.email swapnilsm@gmail.com
+    echo "GIT installation and configuration done !!!"
 fi
 
 ################
@@ -87,7 +101,7 @@ if $aliases; then
         exit 1
     fi
 
-    sudo cat ./aliases >> /etc/bash.bashrc
+    cat ./aliases | sudo tee -a /etc/bash.bashrc
 fi
 
 #################
@@ -95,6 +109,6 @@ fi
 #################
 
 if $general_tools; then
-    sudo apt-get install -y htop tree
+    sudo apt-get install -q -y htop tree
     echo "General tools installation done !!!"
 fi

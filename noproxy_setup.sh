@@ -1,4 +1,6 @@
-#!/bin/sh -e
+#!/bin/sh
+
+set -e
 
 username=
 password=
@@ -18,7 +20,8 @@ sed -e 's:"<username>":"'$username'":g;s:"<password>":"'$password'":g' noproxy.p
 sudo mv ./noproxy_tmp.py /root/noproxy.py
 # make it root only accessible
 sudo chmod 700 /root/noproxy.py
-
+# create the directory for log
+sudo mkdir /var/log/noproxy
 
 # add entry to rc.local
 sed -i s:"^exit 0":"python /root/noproxy.py \& \nexit 0": /etc/rc.local
