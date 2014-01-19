@@ -1,0 +1,62 @@
+#########
+# BASIC #
+#########
+libssl-dev
+build-essential
+libstdc++6:i386
+g++
+curl
+bzip2
+openjdk-7-jdk
+p7zip-full
+
+#######
+# SSH #
+#######
+openssh-server
+openssh-client
+
+###########
+# EDITORS #
+###########
+vim
+#emacs24
+#emacs24-el
+#emacs24-common-non-dfsg
+
+#######
+# GIT #
+#######
+#git
+
+###########
+# GENERAL #
+###########
+htop
+tree
+
+#######
+# WEB #
+#######
+apache2
+libapache2-mod-php5
+nodejs
+youtube-dl
+
+############
+# INTERNET #
+############
+libxss1
+
+###########
+# SHARING #
+###########
+linuxdcpp
+
+##############
+# MULTIMEDIA #
+##############
+vlc
+browser-plugin-vlc
+
+#FILE ENDS HERE

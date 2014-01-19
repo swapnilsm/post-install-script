@@ -5,11 +5,11 @@ username=
 home=
 
 completion_ignore_case=false
-ssh=false
+ssh=true
 emacs=false
 aliases=false
 git=false
-general_tools=true
+general_tools=false
 
 usage() {
     cat <<EOF
@@ -48,7 +48,7 @@ if $ssh; then
         exit 1
     fi
     
-    sudo apt-get install -qq -y openssh-server openssh-client > /dev/null
+#    sudo apt-get install -qq -y openssh-server openssh-client > /dev/null
     sudo cp ./banner /etc/ssh/banner
     echo "Banner /etc/ssh/banner" | sudo tee -a /etc/ssh/sshd_config
     echo "SSH installation and config done !!!"
@@ -66,7 +66,7 @@ if $emacs; then
         exit 1
     fi
     
-    sudo apt-get install -qq -y emacs24 emacs24-el emacs24-common-non-dfsg > /dev/null
+ #   sudo apt-get install -qq -y emacs24 emacs24-el emacs24-common-non-dfsg > /dev/null
     
     sudo cp ./emacs $home/.emacs
     sudo chown $username:$username $home/.emacs
@@ -83,9 +83,9 @@ fi
 
 if $git; then
 
-    sudo apt-get install -qq -y git > /dev/null
-    git config --global user.name "Swapnil S. Mahajan"
-    git config --global user.email swapnilsm@gmail.com
+#    sudo apt-get install -qq -y git > /dev/null
+    git config user.name "Swapnil S. Mahajan"
+    git config user.email swapnilsm@gmail.com
     echo "GIT installation and configuration done !!!"
 fi
 
@@ -109,6 +109,5 @@ fi
 #################
 
 if $general_tools; then
-    sudo apt-get install -qq -y htop tree > /dev/null
     echo "General tools installation done !!!"
 fi
