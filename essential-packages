@@ -5,10 +5,17 @@ libssl-dev
 build-essential
 libstdc++6:i386
 g++
+ocaml
+libocamlgraph-ocaml-dev
 curl
 bzip2
 openjdk-7-jdk
 p7zip-full
+m4
+mercurial
+cmake
+python-setuptools
+python-pip
 
 #######
 # SSH #

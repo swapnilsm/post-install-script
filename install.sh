@@ -1,12 +1,12 @@
-#!/bash/sh 
+#!/bin/sh 
 set -e
 
 username=
 home=
 
 completion_ignore_case=false
-ssh=true
-emacs=false
+ssh=false
+emacs=true
 aliases=false
 git=false
 general_tools=false
