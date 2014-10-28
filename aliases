@@ -1,3 +1,4 @@
+alias sudo="sudo "
 alias e="emacs -nw"
 alias untar="tar -zxvf"
 alias kachara="rm -f *~ #*"
