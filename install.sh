@@ -4,12 +4,12 @@ set -e
 username=
 home=
 
-completion_ignore_case=false
-ssh=false
+completion_ignore_case=true
+ssh=true
 emacs=true
-aliases=false
-git=false
-general_tools=false
+aliases=true
+git=true
+general_tools=true
 
 usage() {
     cat <<EOF
